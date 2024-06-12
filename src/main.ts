@@ -9,6 +9,27 @@ async function bootstrap() {
     .setTitle('CDA-SERVER')
     .setDescription('aplicação server ')
     .setVersion('1.0.0')
+    .addBasicAuth(
+      {
+        type: 'http',
+        scheme: 'basic',
+      },
+      'Login',
+    )
+    .addBearerAuth(
+      {
+        type: 'http',
+        scheme: 'bearer',
+        bearerFormat: 'JWT',
+        in: 'header',
+      },
+      'JWT',
+    )
+    .addSecurity('bearer', {
+      type: 'http',
+      scheme: 'bearer',
+    })
+
     .build();
 
   const document = SwaggerModule.createDocument(app, config);

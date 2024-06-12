@@ -18,9 +18,8 @@ model User {
    id        String   @id @default(uuid())
   email     String   @unique
   name      String
+  profilePicture String @default("https://jacaimages.vercel.app/imgs/icons/defaultUser.jpg")
   password  String
-  cpf       String   @unique
-  isAdmin   Boolean  @default(false)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
