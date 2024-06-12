@@ -24,7 +24,18 @@ export class UserService {
   }
 
   findAll() {
-    return this.prisma.user.findMany().catch(handleError);
+    return this.prisma.user
+      .findMany({
+        select: {
+          id: true,
+          email: true,
+          name: true,
+          profilePicture: true,
+          password: false,
+          emblems: true,
+        },
+      })
+      .catch(handleError);
   }
 
   async update(user: User, updateUserDto: UpdateUserDto) {
