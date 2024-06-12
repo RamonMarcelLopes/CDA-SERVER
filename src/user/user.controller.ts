@@ -15,6 +15,7 @@ import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { LoggedUser } from 'src/auth/logged-user.decorator';
 import { User } from './entities/user.entity';
 import { AuthGuard } from '@nestjs/passport';
+import { AddEmblem } from './dto/add-emblem.dto';
 @ApiTags('User')
 @UseGuards(AuthGuard())
 @ApiBearerAuth('JWT')
@@ -37,6 +38,13 @@ export class UserController {
   findAll() {
     return this.userService.findAll();
   }
+
+  //
+  @Patch('/add/emblem')
+  addEmblem(@LoggedUser() user: User, @Body() addEmblemDto: AddEmblem) {
+    return this.userService.addEmblem(user, addEmblemDto);
+  }
+  //
   @ApiOperation({
     summary: 'Edita o usuario logado no momento',
   })

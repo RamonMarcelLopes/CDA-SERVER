@@ -5,6 +5,7 @@ import { PrismaService } from 'src/prisma/prisma.service';
 import { handleError } from 'src/utils/erro';
 import * as bcrypt from 'bcrypt';
 import { User } from './entities/user.entity';
+import { AddEmblem } from './dto/add-emblem.dto';
 
 @Injectable()
 export class UserService {
@@ -21,6 +22,19 @@ export class UserService {
         data: user,
       })
       .catch(handleError);
+  }
+
+  async addEmblem(user: User, addEmblemDto: AddEmblem) {
+    let id = user.id;
+
+    const data = {
+      emblems: {
+        connect: {
+          id: addEmblemDto.id,
+        },
+      },
+    };
+    await this.prisma.user.update({ where: { id }, data }).catch(handleError);
   }
 
   findAll() {
