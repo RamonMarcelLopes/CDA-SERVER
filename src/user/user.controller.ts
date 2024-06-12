@@ -15,7 +15,7 @@ import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { LoggedUser } from 'src/auth/logged-user.decorator';
 import { User } from './entities/user.entity';
 import { AuthGuard } from '@nestjs/passport';
-@ApiTags('user')
+@ApiTags('User')
 @UseGuards(AuthGuard())
 @ApiBearerAuth('JWT')
 @Controller('user')

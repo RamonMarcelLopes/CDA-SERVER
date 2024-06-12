@@ -9,6 +9,9 @@ async function bootstrap() {
     .setTitle('CDA-SERVER')
     .setDescription('aplicação server ')
     .setVersion('1.0.0')
+    .addTag('Login')
+    .addTag('User')
+    .addTag('Emblema')
     .addBasicAuth(
       {
         type: 'http',

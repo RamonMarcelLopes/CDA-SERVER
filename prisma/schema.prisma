@@ -13,13 +13,21 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-
 model User {
-   id        String   @id @default(uuid())
-  email     String   @unique
-  name      String
-  profilePicture String @default("https://jacaimages.vercel.app/imgs/icons/defaultUser.jpg")
-  password  String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id             String   @id @default(uuid())
+  email          String   @unique
+  name           String
+  profilePicture String   @default("https://jacaimages.vercel.app/imgs/icons/defaultUser.jpg")
+  password       String
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+model Emblema {
+  id    String @id @default(uuid())
+  name  String
+  slug  String
+  image String
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
 }

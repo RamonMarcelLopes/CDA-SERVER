@@ -24,7 +24,7 @@ export class UserService {
   }
 
   findAll() {
-    return this.prisma.user.findMany();
+    return this.prisma.user.findMany().catch(handleError);
   }
 
   async update(user: User, updateUserDto: UpdateUserDto) {
