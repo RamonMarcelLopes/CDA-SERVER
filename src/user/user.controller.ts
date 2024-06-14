@@ -32,11 +32,11 @@ export class UserController {
   }
 
   @ApiOperation({
-    summary: 'Busca todos os usuario',
+    summary: 'Busca o usuario logado ',
   })
   @Get()
-  findAll() {
-    return this.userService.findAll();
+  findAll(@LoggedUser() user: User) {
+    return this.userService.findAll(user);
   }
 
   //

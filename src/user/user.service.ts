@@ -37,9 +37,12 @@ export class UserService {
     await this.prisma.user.update({ where: { id }, data }).catch(handleError);
   }
 
-  findAll() {
+  findAll(user: User) {
+    console.log(user);
+    let id = user.id;
     return this.prisma.user
-      .findMany({
+      .findUnique({
+        where: { id },
         select: {
           id: true,
           email: true,
