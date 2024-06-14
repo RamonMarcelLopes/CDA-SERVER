@@ -33,10 +33,6 @@ async function bootstrap() {
       },
       'JWT',
     )
-    .addSecurity('bearer', {
-      type: 'http',
-      scheme: 'bearer',
-    })
 
     .build();
 

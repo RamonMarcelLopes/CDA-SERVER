@@ -24,21 +24,45 @@ export class UserService {
       .catch(handleError);
   }
 
-  async addEmblem(user: User, addEmblemDto: AddEmblem) {
+  async addEmblem(user: User) {
     let id = user.id;
+    let UserEmblems = await this.prisma.user.findUnique({
+      where: { id },
+      select: { emblems: true },
+    });
+    let AllEmblems = await this.prisma.emblema.findMany({});
+
+    let userEmblemIds = UserEmblems.emblems.map((emblem) => emblem.id);
+
+    let emblemsToDisplay = AllEmblems.filter(
+      (emblem) => !userEmblemIds.includes(emblem.id),
+    );
+    let availableEmblems = emblemsToDisplay;
+
+    let numberOfEmblems = availableEmblems.length;
+
+    let randomIndex = Math.floor(Math.random() * numberOfEmblems);
+
+    let randomEmblem = availableEmblems[randomIndex];
+
+    if (!randomEmblem) {
+      throw new NotFoundException(
+        'o usuario ja possui todos os emblemas disponiveis',
+      );
+    }
 
     const data = {
       emblems: {
         connect: {
-          id: addEmblemDto.id,
+          id: randomEmblem.id,
         },
       },
     };
     await this.prisma.user.update({ where: { id }, data }).catch(handleError);
+    return randomEmblem;
   }
 
   findAll(user: User) {
-    console.log(user);
     let id = user.id;
     return this.prisma.user
       .findUnique({

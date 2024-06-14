@@ -41,8 +41,8 @@ export class UserController {
 
   //
   @Patch('/add/emblem')
-  addEmblem(@LoggedUser() user: User, @Body() addEmblemDto: AddEmblem) {
-    return this.userService.addEmblem(user, addEmblemDto);
+  addEmblem(@LoggedUser() user: User) {
+    return this.userService.addEmblem(user);
   }
   //
   @ApiOperation({
