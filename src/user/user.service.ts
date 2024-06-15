@@ -19,6 +19,15 @@ export class UserService {
 
     return await this.prisma.user
       .create({
+        select: {
+          password: false,
+          name: true,
+          email: true,
+          id: true,
+          createdAt: true,
+          updatedAt: true,
+          profilePicture: true,
+        },
         data: user,
       })
       .catch(handleError);

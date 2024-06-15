@@ -17,8 +17,6 @@ import { User } from './entities/user.entity';
 import { AuthGuard } from '@nestjs/passport';
 import { AddEmblem } from './dto/add-emblem.dto';
 @ApiTags('User')
-@UseGuards(AuthGuard())
-@ApiBearerAuth('JWT')
 @Controller('user')
 export class UserController {
   constructor(private readonly userService: UserService) {}
@@ -34,12 +32,16 @@ export class UserController {
   @ApiOperation({
     summary: 'Busca o usuario logado ',
   })
+  @UseGuards(AuthGuard())
+  @ApiBearerAuth('JWT')
   @Get()
   findAll(@LoggedUser() user: User) {
     return this.userService.findAll(user);
   }
 
   //
+  @UseGuards(AuthGuard())
+  @ApiBearerAuth('JWT')
   @Patch('/add/emblem')
   addEmblem(@LoggedUser() user: User) {
     return this.userService.addEmblem(user);
@@ -48,6 +50,8 @@ export class UserController {
   @ApiOperation({
     summary: 'Edita o usuario logado no momento',
   })
+  @UseGuards(AuthGuard())
+  @ApiBearerAuth('JWT')
   @Patch('/edit')
   update(@LoggedUser() user: User, @Body() updateUserDto: UpdateUserDto) {
     return this.userService.update(user, updateUserDto);
