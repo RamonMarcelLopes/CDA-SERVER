@@ -12,11 +12,12 @@ async function bootstrap() {
 
   const config = new DocumentBuilder()
     .setTitle('CDA-SERVER')
-    .setDescription('aplicação server ')
+    .setDescription('CDA-Redeem emblems')
     .setVersion('1.0.0')
     .addTag('Login')
     .addTag('User')
     .addTag('Emblema')
+    .addTag('Server')
     .addBasicAuth(
       {
         type: 'http',
@@ -40,5 +41,6 @@ async function bootstrap() {
   SwaggerModule.setup('api', app, document);
 
   await app.listen(3333);
+  console.log('🚀 server runing on port http://localhost:3333/');
 }
 bootstrap();
