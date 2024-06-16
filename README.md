@@ -21,8 +21,8 @@
 
 ## Description
 
-sistema que permite  criar,editar e deletar usuários
-usuários podem criar,editar,deletar e resgatar emblemas aleatórios 
+### Sistema que permite  criar, editar e deletar usuários
+### Usuários podem criar, editar, deletar e resgatar emblemas aleatórios 
 
 ## Installation
 
